@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 
@@ -19,37 +20,25 @@ class MainActivity : AppCompatActivity() {
             tirada()
         }
 
-        val botoAugmenta:Button =findViewById(R.id.botoSuma.toInt())
-        botoAugmenta.setOnClickListener() {
-            augmenta1()
-        }
+        val imatgeDau:ImageView = findViewById(R.id.imatgeDau)
+        imatgeDau.setImageResource(R.drawable.empty_dice)
     }
 
-    private fun augmenta1() {
-        val numeroDau: TextView = findViewById(R.id.txtNumero)
-
-        if (numeroDau.text.isNullOrEmpty()) {
-            Toast.makeText(this, "Error", Toast.LENGTH_LONG).show()
-        }
-        else{
-
-            if (numeroDau.text == "6"){
-
-                numeroDau.text = "1"
-
-            }
-            else{
-                var numeroDauInt = numeroDau.text.toString().toInt()
-                numeroDauInt++
-                numeroDau.text = numeroDauInt.toString()
-            }
-        }
-    }
 
     private fun tirada() {
-     var numeroDau:TextView = findViewById(R.id.txtNumero)
+     val imatgeDau:ImageView = findViewById(R.id.imatgeDau)
         var randomInt = (1..6).random()
-        numeroDau.text=randomInt.toString()
+        var imatgeFinal=R.drawable.empty_dice
+        when (randomInt){
+            1 -> imatgeFinal=R.drawable.dice_1
+            2 -> imatgeFinal=R.drawable.dice_2
+            3 -> imatgeFinal=R.drawable.dice_3
+            4 -> imatgeFinal=R.drawable.dice_4
+            5 -> imatgeFinal=R.drawable.dice_5
+            6 -> imatgeFinal=R.drawable.dice_6
+            else -> imatgeFinal=R.drawable.empty_dice
+        }
+        imatgeDau.setImageResource(imatgeFinal)
     }
 }
 
